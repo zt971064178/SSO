@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd ">
+
+	<!-- Spring扫描包 -->
+	<context:component-scan base-package="cn.itcast.sso.server" />
+	<!-- 启动Spring注解解析器 -->
+	<context:annotation-config />
+
+	<!-- 此为配置参数：如：登陆页切换，前置处理器等，refreshConfig为热部署调用方法，调用读取最新参数信息 -->
+	<bean class="cn.itcast.sso.server.Config" init-method="refreshConfig"
+		destroy-method="destroy">
+		<property name="loginViewName" value="/login2" />
+		<property name="authenticationHandler">
+			<bean class="cn.itcast.sso.server.service.CaptchaAuthenticationHandler" />
+		</property>
+		<property name="preLoginHandler">
+			<bean class="cn.itcast.sso.server.service.CaptchaPreLoginHandler"/>
+		</property>
+		<property name="userSerializer">
+			<bean class="cn.itcast.sso.server.service.DemoUserSerializer"></bean>
+		</property>
+	</bean>
+</beans>

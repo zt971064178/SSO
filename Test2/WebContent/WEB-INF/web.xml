@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>Test2</display-name>
+  <filter>
+		<filter-name>SSOFilter</filter-name>
+		<filter-class>cn.itcast.client.SSOFilter</filter-class>
+		<init-param>
+			<!-- 服务器地址  外网通信 -->
+			<param-name>serverBaseUrl</param-name>
+			<param-value>http://www.server.com:8080</param-value>
+		</init-param>
+		<init-param>
+			<!-- 服务器地址，内网通信 -->
+			<param-name>serverInnerAddress</param-name>
+			<param-value>http://127.0.0.1:8080</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>SSOFilter</filter-name>
+		<url-pattern>/test/*</url-pattern>
+	</filter-mapping>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
